@@ -1,0 +1,129 @@
+{
+  "dictionary_version": "4.0.0",
+  "description": "字段字典：每个字段的定义、合法来源、格式、是否必填、示例。管线各阶段只产出/裁决本字典登记的字段；评测题目若指定必需字段清单，先合并进 required=true 再运行（管线会自动从 /input/case.json 的 required_fields 合并）。",
+  "source_priority": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+  "source_confidence": {
+    "admin_note": 0.95,
+    "companion_table": 0.85,
+    "content": 0.75,
+    "filename": 0.6,
+    "agent_inference": 0.5
+  },
+  "fields": {
+    "title": {
+      "definition": "文档标题/题名，人类可读的短名称",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "非空字符串，建议 <= 200 字符",
+      "required": true,
+      "example": "钙钛矿太阳能电池稳定性实验记录"
+    },
+    "authors": {
+      "definition": "作者/实验人/负责人",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "字符串；多人用 / 或 ; 分隔",
+      "required": false,
+      "example": "张三/李四"
+    },
+    "year": {
+      "definition": "文档年份（4 位）",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "^(19|20)\\d{2}$",
+      "required": true,
+      "example": "2023"
+    },
+    "date": {
+      "definition": "完整日期（文档落款或记录日期）",
+      "legal_sources": ["admin_note", "companion_table", "content", "agent_inference"],
+      "format": "YYYY-MM-DD 或 YYYY/MM/DD 或 中文 年月日",
+      "required": false,
+      "example": "2023-08-15"
+    },
+    "project": {
+      "definition": "所属项目/课题名称或编号",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "非空字符串",
+      "required": false,
+      "example": "项目A"
+    },
+    "instrument": {
+      "definition": "仪器/设备型号",
+      "legal_sources": ["admin_note", "companion_table", "content", "agent_inference"],
+      "format": "非空字符串",
+      "required": false,
+      "example": "Agilent-7890B"
+    },
+    "doc_type": {
+      "definition": "文档类型（实验记录/报告/数据/论文/备注等）",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "非空字符串",
+      "required": false,
+      "example": "实验记录"
+    },
+    "version": {
+      "definition": "版本标识（v1/v2、日期版、最终版等）",
+      "legal_sources": ["admin_note", "companion_table", "content", "filename", "agent_inference"],
+      "format": "非空字符串",
+      "required": false,
+      "example": "v2"
+    },
+    "doi": {
+      "definition": "数字对象标识符",
+      "legal_sources": ["admin_note", "companion_table", "content"],
+      "format": "^10\\.\\d{4,9}/\\S+$",
+      "required": false,
+      "example": "10.1000/xyz123"
+    },
+    "keywords": {
+      "definition": "关键词/标签",
+      "legal_sources": ["admin_note", "companion_table", "content", "agent_inference"],
+      "format": "字符串；多个用 ; 分隔",
+      "required": false,
+      "example": "钙钛矿;稳定性"
+    }
+  },
+  "field_aliases": {
+    "title": ["标题", "题名", "题目", "title", "name"],
+    "authors": ["作者", "实验人", "负责人", "author", "authors", "by"],
+    "year": ["年份", "年度", "year"],
+    "date": ["日期", "记录日期", "date", "时间"],
+    "project": ["项目", "项目名称", "项目编号", "课题", "project", "grant"],
+    "instrument": ["仪器", "仪器型号", "设备", "型号", "instrument", "device"],
+    "doc_type": ["类型", "文档类型", "类别", "type", "doc_type", "category"],
+    "version": ["版本", "版本号", "version", "rev"],
+    "doi": ["doi", "DOI"],
+    "keywords": ["关键词", "关键字", "标签", "keywords", "tags"]
+  },
+  "filename_patterns": [
+    {
+      "name": "项目_作者_年份_类型",
+      "regex": "^(.+?)_(.+?)_((?:19|20)\\d{2})_([^_]+)\\.([A-Za-z0-9]+)$",
+      "map": {"1": "project", "2": "authors", "3": "year", "4": "doc_type"}
+    },
+    {
+      "name": "作者_年份_标题",
+      "regex": "^(.+?)_((?:19|20)\\d{2})_(.+)\\.([A-Za-z0-9]+)$",
+      "map": {"1": "authors", "2": "year", "3": "title"}
+    },
+    {
+      "name": "内嵌年份",
+      "regex": "((?:19|20)\\d{2})",
+      "map": {"1": "year"}
+    },
+    {
+      "name": "版本标记",
+      "regex": "[_\\- ]v(\\d+(?:\\.\\d+)*)",
+      "map": {"1": "version"},
+      "flags": ["IGNORECASE"]
+    }
+  ],
+  "content_sniffers": [
+    {"field": "doi", "regex": "\\b(10\\.\\d{4,9}/[-._;()/:A-Za-z0-9]+)", "group": 1},
+    {"field": "date", "regex": "((?:19|20)\\d{2}[-/.年]\\s?\\d{1,2}[-/.月]\\s?\\d{1,2})\\s?日?", "group": 1},
+    {"field": "year", "regex": "(?:年份|年度|year)[:：]?\\s*((?:19|20)\\d{2})", "group": 1, "flags": ["IGNORECASE"]},
+    {"field": "project", "regex": "(?:项目名称|项目编号|项目|课题)[:：]\\s*([^\\s，。；;]{1,40})", "group": 1},
+    {"field": "instrument", "regex": "(?:仪器型号|仪器|设备型号|型号)[:：]\\s*([^\\s，。；;]{1,40})", "group": 1},
+    {"field": "authors", "regex": "(?:作者|实验人|负责人)[:：]\\s*([^\\s，。；;]{1,60})", "group": 1},
+    {"field": "version", "regex": "(?:版本)[:：]?\\s*(v?\\d+(?:\\.\\d+)*)", "group": 1, "flags": ["IGNORECASE"]},
+    {"field": "keywords", "regex": "(?:关键词|关键字)[:：]\\s*([^\\n]{1,120})", "group": 1}
+  ]
+}

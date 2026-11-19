@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "result.json",
+  "description": "archive-first 工作流的最终交付结果（诚实 status/sources/uncertainty/change_records）",
+  "type": "object",
+  "required": ["case_id", "status", "output_contract", "sources",
+               "uncertainty", "change_records"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "status": {"type": "string",
+               "enum": ["complete", "partial", "error"]},
+    "generated_utc": {"type": "string"},
+    "partial": {"type": "boolean"},
+    "output_contract": {
+      "type": "object",
+      "required": ["fields"],
+      "properties": {
+        "raw": {},
+        "note": {"type": "string"},
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "requested": {"type": "array"},
+              "resolved": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["path", "exists"],
+                  "properties": {
+                    "path": {"type": "string"},
+                    "exists": {"type": "boolean"}
+                  }
+                }
+              },
+              "value": {},
+              "handled": {"type": "string"},
+              "note": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "exists"],
+        "properties": {
+          "path": {"type": "string"},
+          "exists": {"type": "boolean"}
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "role"],
+        "properties": {
+          "source": {"type": "string"},
+          "role": {"type": "string"}
+        }
+      }
+    },
+    "uncertainty": {"type": "array", "items": {"type": "string"}},
+    "change_records": {"type": "array", "items": {"type": "object"}},
+    "summary": {"type": "object"}
+  }
+}

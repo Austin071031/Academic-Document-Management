@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "manifest.json schema for research-library-ledger-pipeline-v1",
+  "type": "object",
+  "required": ["generated_at", "generator", "method", "files"],
+  "properties": {
+    "generated_at": {"type": "string"},
+    "generator": {"type": "string"},
+    "method": {"type": "string"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_path", "action", "sha256", "size", "project", "year", "author", "version", "type", "notes"],
+        "properties": {
+          "source_path": {"type": "string"},
+          "library_path": {"type": ["string", "null"]},
+          "action": {"type": "string", "enum": ["copy", "duplicate_of", "skip_unreadable"]},
+          "sha256": {"type": ["string", "null"]},
+          "size": {"type": ["integer", "null"]},
+          "project": {"$ref": "#/definitions/meta_field"},
+          "year": {"$ref": "#/definitions/meta_field"},
+          "author": {"$ref": "#/definitions/meta_field"},
+          "version": {"$ref": "#/definitions/meta_field"},
+          "type": {"$ref": "#/definitions/meta_field"},
+          "notes": {"$ref": "#/definitions/meta_field"},
+          "duplicate_of": {"type": ["string", "null"]},
+          "superseded_by": {"type": ["string", "null"]}
+        }
+      }
+    }
+  },
+  "definitions": {
+    "meta_field": {
+      "type": ["object", "null"],
+      "required": ["field", "value", "source", "evidence"],
+      "properties": {
+        "field": {"type": "string"},
+        "value": {},
+        "source": {"type": ["string", "null"], "enum": ["filename", "content", "companion_table", "admin_note", "agent_inference", null]},
+        "evidence": {"type": ["string", "null"]},
+        "reason": {"type": "string"}
+      }
+    }
+  }
+}

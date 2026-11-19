@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "result.json schema（版本4 元数据溯源台账）",
+  "type": "object",
+  "required": ["case_id", "status", "sources", "uncertainty", "change_records"],
+  "properties": {
+    "case_id": {"type": ["string", "null"], "description": "原样来自 /input/case.json"},
+    "status": {"type": "string", "enum": ["complete", "partial"],
+      "description": "complete=全部管线步骤退出码0；partial=有步骤失败或管线仍在运行"},
+    "status_reason": {"type": "string"},
+    "sources": {"type": "array", "items": {"type": "string"},
+      "description": "/app/output 下实际存在的产物清单"},
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "reason"],
+        "properties": {
+          "item": {"type": ["string", "null"]},
+          "reason": {"type": ["string", "null"]}
+        }
+      },
+      "description": "不可读文件/坏压缩包/空目录/未匹配行/冲突计数/未履约契约键等"
+    },
+    "change_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["time", "action", "object", "evidence", "result"],
+        "properties": {
+          "time": {"type": "string"},
+          "action": {"type": "string"},
+          "object": {"type": ["string", "null"]},
+          "evidence": {"type": ["string", "null"]},
+          "result": {"type": ["string", "null"]},
+          "note": {"type": ["string", "null"]}
+        }
+      },
+      "description": "六要素变更记录（时间/动作/对象/依据/结果/备注）"
+    },
+    "written_at": {"type": "string"}
+  },
+  "additionalProperties": true,
+  "comment": "output_contract 的全部键作为附加顶层字段出现；映射不到产物的键为 null 且在 uncertainty 中有说明。"
+}

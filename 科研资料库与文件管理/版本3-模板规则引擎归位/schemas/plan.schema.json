@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "research-library-rule-engine-v3 plan.json",
+  "type": "object",
+  "required": ["generated_at", "template", "counts", "entries", "skipped"],
+  "properties": {
+    "case_id": {"type": ["string", "null"]},
+    "generated_at": {"type": "string"},
+    "rules_version": {"type": ["string", "null"]},
+    "template": {"type": "string"},
+    "input_dir": {"type": "string"},
+    "counts": {
+      "type": "object",
+      "required": ["files_total", "planned", "skipped"],
+      "properties": {
+        "files_total": {"type": "integer"},
+        "planned": {"type": "integer"},
+        "skipped": {"type": "integer"},
+        "archives": {"type": "integer"},
+        "empty_dirs": {"type": "integer"},
+        "duplicate_groups": {"type": "integer"},
+        "version_groups": {"type": "integer"},
+        "errors": {"type": "integer"}
+      }
+    },
+    "rule_coverage": {"type": "object", "additionalProperties": {"type": "integer"}},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "action", "rule_id", "reason"],
+        "properties": {
+          "source": {"type": "string"},
+          "target": {"type": "string"},
+          "action": {"type": "string", "enum": ["copy", "skip"]},
+          "rule_id": {"type": "string"},
+          "reason": {"type": "string"},
+          "size": {"type": ["integer", "null"]},
+          "sha256": {"type": ["string", "null"]},
+          "mtime": {"type": ["string", "null"]},
+          "metadata": {"type": "object"},
+          "metadata_provenance": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["value", "source", "evidence"],
+              "properties": {
+                "value": {"type": ["string", "null"]},
+                "source": {"type": "string"},
+                "evidence": {"type": "string"}
+              }
+            }
+          },
+          "field_values": {"type": "object"},
+          "notes": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "skipped": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "reason"],
+        "properties": {
+          "path": {"type": "string"},
+          "reason": {"type": "string"},
+          "readable": {"type": "boolean"}
+        }
+      }
+    },
+    "archives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {"type": "string"},
+          "format": {"type": "string"},
+          "entries": {"type": "array", "items": {"type": "string"}},
+          "error": {"type": ["string", "null"]},
+          "corrupt_member": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "empty_dirs": {"type": "array", "items": {"type": "string"}},
+    "errors": {"type": "array"}
+  },
+  "additionalProperties": true
+}

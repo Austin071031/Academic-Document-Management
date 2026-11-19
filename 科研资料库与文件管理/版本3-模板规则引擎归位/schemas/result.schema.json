@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "research-library-rule-engine-v3 result.json",
+  "type": "object",
+  "required": ["case_id", "status", "sources", "uncertainty", "change_records"],
+  "properties": {
+    "case_id": {"type": ["string", "null"]},
+    "status": {"type": "string", "enum": ["partial", "complete", "complete_with_warnings"]},
+    "generated_at": {"type": "string"},
+    "skill": {"type": "string"},
+    "library_dir": {"type": "string"},
+    "quarantine_dir": {"type": "string"},
+    "counts": {
+      "type": "object",
+      "properties": {
+        "files_total": {"type": "integer"},
+        "planned": {"type": "integer"},
+        "skipped": {"type": "integer"},
+        "archives": {"type": "integer"},
+        "empty_dirs": {"type": "integer"},
+        "duplicate_groups": {"type": "integer"},
+        "version_groups": {"type": "integer"},
+        "errors": {"type": "integer"}
+      }
+    },
+    "duplicates": {
+      "type": "object",
+      "properties": {
+        "file": {"type": "string"},
+        "groups": {"type": "integer"}
+      }
+    },
+    "versions": {
+      "type": "object",
+      "properties": {
+        "file": {"type": "string"},
+        "groups": {"type": "integer"}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "plan": {"type": "string"},
+        "audit": {"type": "string"},
+        "journal": {"type": "string"},
+        "duplicates": {"type": "string"},
+        "versions": {"type": "string"}
+      }
+    },
+    "rule_coverage": {"type": "object", "additionalProperties": {"type": "integer"}},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "used_for"],
+        "properties": {
+          "source": {"type": "string"},
+          "evidence": {"type": ["string", "null"]},
+          "used_for": {"type": "string"}
+        }
+      }
+    },
+    "uncertainty": {"type": "array", "items": {"type": "string"}},
+    "change_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {"type": "string"},
+          "src": {"type": ["string", "null"]},
+          "dst": {"type": ["string", "null"]},
+          "reverse": {"type": ["object", "null"]}
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

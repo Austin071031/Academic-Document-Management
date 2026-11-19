@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "research-library-cas-lineage-v2 library/index.json",
+  "type": "object",
+  "required": ["version", "files", "stats"],
+  "properties": {
+    "version": {"type": "integer"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["logical_path", "tree_path", "content_id", "source_path",
+                     "permissions", "origin", "category", "is_text",
+                     "metadata", "notes"],
+        "properties": {
+          "logical_path": {"type": "string",
+            "description": "项目/年份/类型/规范文件名"},
+          "tree_path": {"type": ["string", "null"],
+            "description": "tree/ 下相对路径；冲突时含 __dupN"},
+          "content_id": {"type": "string", "description": "sha256 全值"},
+          "source_path": {"type": "string",
+            "description": "相对 /input 的源路径；压缩包成员为 包路径::成员名"},
+          "size": {"type": ["integer", "null"]},
+          "mtime": {"type": ["number", "null"]},
+          "permissions": {"type": ["string", "null"],
+            "description": "八进制权限，如 0o644"},
+          "origin": {"type": "string"},
+          "category": {"type": "string"},
+          "is_text": {"type": "boolean"},
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["field", "value", "source", "evidence"],
+              "properties": {
+                "field": {"type": "string"},
+                "value": {"description": "抽不到为 null"},
+                "source": {"type": ["string", "null"],
+                  "enum": ["filename", "content", "companion_table",
+                           "admin_note", "agent_inference", null]},
+                "evidence": {"type": "string",
+                  "description": "出处证据；value 为 null 时此处为原因"}
+              }
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["source", "evidence"],
+              "properties": {
+                "source": {"type": "string",
+                  "enum": ["companion_table", "admin_note"]},
+                "evidence": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "indexed_files": {"type": "integer"},
+        "unique_contents": {"type": "integer"},
+        "tree_conflicts_renamed": {"type": "integer"},
+        "skipped_files": {"type": "integer"},
+        "empty_dirs": {"type": "integer"},
+        "broken_archives": {"type": "integer"},
+        "companion_tables_used": {"type": "integer"},
+        "admin_notes_used": {"type": "integer"}
+      }
+    },
+    "skipped": {"type": "array"},
+    "empty_dirs": {"type": "array", "items": {"type": "string"}},
+    "broken_archives": {"type": "array"}
+  }
+}
