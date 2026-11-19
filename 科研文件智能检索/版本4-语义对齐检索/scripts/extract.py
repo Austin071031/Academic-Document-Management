@@ -205,9 +205,14 @@ def extract_xlsx(path):
 
 def extract_text(path):
     try:
+        size = os.path.getsize(path)
         with open(path, encoding="utf-8", errors="replace") as f:
-            t = f.read(2 << 20)  # 单文件上限 2MB，超出截断并记录
-        return [{"page": 1, "text": t}], []
+            t = f.read(2 << 20)  # 单文件上限 2MB
+        fails = []
+        if size > (2 << 20):
+            fails.append({"type": "text_truncated",
+                          "detail": "read first 2MiB of %d bytes" % size})
+        return [{"page": 1, "text": t}], fails
     except Exception as e:  # noqa: BLE001
         return [], [{"type": "extract_failed", "detail": repr(e)[:200]}]
 
