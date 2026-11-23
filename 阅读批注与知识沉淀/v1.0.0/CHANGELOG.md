@@ -26,3 +26,4 @@
 - plan.py 版本分组新增无作者退化键（规范化标题），避免匿名文献版本漏分组。
 - 工作流 A 新增：pypdf 缺失时自动 pip 安装重试；CJK 二元组检索回退；
   QuadPoints 凸序重排修复 UL,UR,LL,LR 原始顺序导致的引文恢复失败。
+- 提交：playground attempt 88935、88961、88966（challenge-c050aaed，阅读批注与知识沉淀；三次同版重提，均 evaluation_error 非终评）

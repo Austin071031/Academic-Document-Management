@@ -37,3 +37,4 @@
 - 新增 direction.json（方向元数据，frontmatter_max_bytes 等参数被预检脚本真实读取）。
 - 新增 submission.md（提交记录模板，attempt 回填）。
 - 仓库侧清理 v1.0.0 残留的 scripts/__pycache__（CLI 打包本就会跳过，仅仓库整洁）。
+- 提交：playground attempt 99585（challenge-c050aaed，阅读批注与知识沉淀）
