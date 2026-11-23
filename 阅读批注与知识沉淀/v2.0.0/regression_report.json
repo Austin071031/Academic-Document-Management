@@ -1,0 +1,43 @@
+{
+ "baseline": "v1.0.0 (attempt 88966, 0分 evaluation_error 弃权)",
+ "candidate": "v2.0.0",
+ "assets_missing": [],
+ "assets_note": "01_skeleton_diff.md 白名单 22 文件全部保留；新增 check_skill_install.py + direction.json + submission.md（只增不删）",
+ "rules": {
+  "baseline": 1,
+  "candidate": 2,
+  "removed": [],
+  "note": "baseline 自检 = validate_output.py；candidate 增加 check_skill_install.py 预检（对 v1.0.0 实跑 fail 于 description 1046B，对 v2.0.0 pass，证明机检有效）"
+ },
+ "contract_diff": [
+  "SKILL.md frontmatter description 1046B -> 470B（唯一变更，属 §4 契约层修复范围）"
+ ],
+ "behavior_conservation": {
+  "workflow_A_outputs": "notes.json/links.json/inventory.json/digest.md 逐字节一致（去时间戳）；verification_report.md/result_annotations.json 差异仅为脚本路径/输出路径/elapsed_seconds",
+  "workflow_B_outputs": "manifest.json/manifest.csv/README.md 逐字节一致；selfcheck v1/v2 均 passed",
+  "status_parity": "v1 partial == v2 partial（加密+损坏件如实降级）"
+ },
+ "budget": {
+  "pipeline_A_seconds_bigcase_40pdfs": 7.6,
+  "model_calls_added": 0,
+  "within_contract": "900s/64 requests 内大幅余量"
+ },
+ "proxy_eval": [
+  {
+   "case": "正常（3 PDF 5类批注+重复+版本+散落笔记+docx剪藏）",
+   "baseline": "锚点10/10, notes=21, 簇=3, selfcheck=pass",
+   "candidate": "同上（一致）"
+  },
+  {
+   "case": "劣化（加密+损坏+断链+空文件）",
+   "baseline": "status=partial, failures=2 如实记录",
+   "candidate": "同上（一致）"
+  },
+  {
+   "case": "压线（40 PDF 220 批注）",
+   "baseline": "未测（本次仅测 candidate）",
+   "candidate": "7.6s, 锚点率1.0, notes=220, 检索命中20"
+  }
+ ],
+ "verdict": "pass"
+}
