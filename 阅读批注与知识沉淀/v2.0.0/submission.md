@@ -2,12 +2,12 @@
 
 | 字段 | 值 |
 |-|-|
-| Attempt ID | （待提交） |
+| Attempt ID | 99585 |
 | 赛题 | challenge-c050aaed 阅读批注与知识沉淀（玻尔产品周赛第四期） |
-| 提交时间 | （待提交） |
-| 状态 | （待提交） |
+| 提交时间 | 2026-11-23（UTC） |
+| 状态 | submitted（提交成功，评测排队中） |
 | 得分 | 待出分 |
-| 查询命令 | `playground status --attempt-id （待提交）` |
+| 查询命令 | `playground status --attempt-id 99585` |
 
 ## 版本与提交对应关系
 
