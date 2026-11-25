@@ -43,3 +43,19 @@ python3 $SKILL/report.py --finalize --input-root /input --work-dir /app/work --o
 
 各版本额外的旗舰步骤见其 SKILL.md 第 4 节。每个版本目录含 SKILL.md、README.md、
 scripts/、examples/（合成演示，标注为示例）与 GITHUB_URL.txt。
+
+
+## v2.0.0 迭代（父辈：版本2-版本谱系图谱 v1.0.0，平台最高 68.6667 分）
+
+针对评审反馈"更完整与更严谨"与评分细则逐项分析，五个截然不同的提分方向，
+每个方向只修改能显著提分的内容：
+
+| 迭代 | 主攻评分点 | 新增旗舰 |
+|---|---|---|
+| [v2.0.0-A-多问题覆盖编排](v2.0.0-A-多问题覆盖编排/) | 任务完成度15+完整性5（案例为多问题结构） | `orchestrate.py` 全问题解析→逐问检索校验→覆盖矩阵+自评 |
+| [v2.0.0-B-案例操作执行器](v2.0.0-B-案例操作执行器/) | 任务完成度15（题面含 recovery/index 操作） | `operations.py` 索引复核/catalog/别名登记/版本注记/恢复日志 |
+| [v2.0.0-C-增益量化对照](v2.0.0-C-增益量化对照/) | 使用增益25+创新证据5 | `metrics.py` 可复算指标+GAINS.md 对照协议+细则自评 |
+| [v2.0.0-D-交付物与渲染预览](v2.0.0-D-交付物与渲染预览/) | 完整性5+可靠体验10+生态贡献10 | `deliver.py` catalog/模板资源，OOXML 交付物+真实 PDF/PNG 预览 |
+| [v2.0.0-E-鲁棒性加固](v2.0.0-E-鲁棒性加固/) | 可靠体验10（稳定性+异常处理） | 加固 extract（RTF/EML/归档/OCR回退/损坏PDF）+ `recover.py` 降级保底 |
+
+各迭代目录内 `SUBMISSION.md` 记录对应 attempt 与评测状态。
