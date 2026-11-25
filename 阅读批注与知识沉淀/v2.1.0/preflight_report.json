@@ -1,0 +1,59 @@
+{
+ "skill_dir": "/tmp/forge_repo/阅读批注与知识沉淀/v2.1.0",
+ "config_source": "direction.json",
+ "config": {
+  "frontmatter_max_bytes": 1024,
+  "resource_limits": {
+   "max_files": 50,
+   "max_file_bytes": 512000,
+   "max_total_bytes": 2097152,
+   "no_symlinks": true
+  }
+ },
+ "description_bytes": 470,
+ "file_count": 27,
+ "total_bytes": 212622,
+ "checks": [
+  {
+   "check": "skill_md_exists",
+   "ok": true,
+   "detail": "/tmp/forge_repo/阅读批注与知识沉淀/v2.1.0/SKILL.md"
+  },
+  {
+   "check": "frontmatter_name",
+   "ok": true,
+   "detail": "name='annotation-knowledge-sink'（需小写字母/数字/连字符）"
+  },
+  {
+   "check": "frontmatter_description_bytes",
+   "ok": true,
+   "detail": "description=470 bytes，上限 1024 bytes（来源：direction.json）"
+  },
+  {
+   "check": "resource_file_count",
+   "ok": true,
+   "detail": "27/50 个文件"
+  },
+  {
+   "check": "resource_total_bytes",
+   "ok": true,
+   "detail": "212622/2097152 bytes"
+  },
+  {
+   "check": "resource_utf8_only",
+   "ok": true,
+   "detail": "非 UTF-8 文件：无"
+  },
+  {
+   "check": "resource_no_symlinks",
+   "ok": true,
+   "detail": "符号链接：无"
+  },
+  {
+   "check": "github_url",
+   "ok": true,
+   "detail": "首行=https://github.com/Austin071031/Literature-Management-Skill-Reading-Annotations-"
+  }
+ ],
+ "verdict": "pass"
+}

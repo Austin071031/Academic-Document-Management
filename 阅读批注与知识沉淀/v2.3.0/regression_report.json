@@ -1,0 +1,21 @@
+{
+ "baseline": "v2.2.0",
+ "candidate": "v2.3.0",
+ "assets_missing": [],
+ "rules": {
+  "baseline": 2,
+  "candidate": 2,
+  "removed": []
+ },
+ "contract_diff": [],
+ "behavior_conservation": {
+  "无分栏夹具": "notes/links 与 v2.2.0 逐字节一致",
+  "delta": "仅在锚点校验失败路径新增分栏校正与 OCR 校正，成功路径零变化"
+ },
+ "new_capability_evidence": "双栏夹具：跨行高亮引文 match=none/conf=0.3 → exact-column-corrected/verified/conf=0.9，记录于 verification.anchor_corrections；OCR 路径无 tesseract 时如实告警降级",
+ "budget": {
+  "pipeline_seconds": 1.6,
+  "model_calls_added": 0
+ },
+ "verdict": "pass"
+}

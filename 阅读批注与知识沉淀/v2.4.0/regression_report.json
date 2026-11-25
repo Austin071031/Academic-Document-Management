@@ -1,0 +1,21 @@
+{
+ "baseline": "v2.3.0",
+ "candidate": "v2.4.0",
+ "assets_missing": [],
+ "rules": {
+  "baseline": 2,
+  "candidate": 2,
+  "removed": []
+ },
+ "contract_diff": [],
+ "behavior_conservation": {
+  "正常模式": "notes 与 v2.3.0 逐字节一致",
+  "--fast": "notes 与正常模式逐字节一致，仅跳过预览渲染"
+ },
+ "new_capability_evidence": "completed_stages=['1-inventory','2-extraction','3-anchor-verification','5-notes-links','6-index','7-finalize'] 全部即时落盘；--fast --max-pages 1 正常运行且交付一致",
+ "budget": {
+  "pipeline_seconds": 1.5,
+  "model_calls_added": 0
+ },
+ "verdict": "pass"
+}

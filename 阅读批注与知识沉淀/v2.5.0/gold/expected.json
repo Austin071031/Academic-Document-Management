@@ -1,0 +1,27 @@
+{
+  "_comment": "金标准期望值（合成自测题集 GOLD-SELFTEST-001，非平台案例）。与 make_fixture.py 确定性输出一一对应；环境差异（引擎/OCR 可用性）只影响带 * 的弱断言项。",
+  "case_id": "GOLD-SELFTEST-001",
+  "strong_assertions": {
+    "summary.files": 11,
+    "summary.pdfs_processed": 4,
+    "summary.pdfs_failed": 2,
+    "summary.annotations": 17,
+    "summary.docx_comments": 2,
+    "summary.duplicate_groups": 1,
+    "summary.version_groups": 1,
+    "summary.file_version_links": 2,
+    "verification.anchor_verification_rate": 1.0,
+    "verification.merged_annotation_clusters": 3,
+    "verification.anchor_corrections_min": 1,
+    "notes.docx_comment_anchor_verified_count": 2,
+    "status": "partial"
+  },
+  "weak_assertions": {
+    "verification.fts5": true,
+    "search.twocol_anchor_corrected": "exact-column-corrected"
+  },
+  "notes": {
+    "status_partial_reason": "夹具故意包含加密 PDF 与损坏 PDF（各记 failure），诚实降级为 partial",
+    "engine_note": "pymupdf 可用时 annotations 计数不变；anchor 路径 engine 字段不同属预期"
+  }
+}

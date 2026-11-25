@@ -1,0 +1,21 @@
+{
+ "baseline": "v2.4.0",
+ "candidate": "v2.5.0",
+ "assets_missing": [],
+ "rules": {
+  "baseline": 2,
+  "candidate": 3,
+  "removed": [],
+  "note": "新增 run_goldcheck.py 作为第三条机检规则（13 项强断言全过）"
+ },
+ "contract_diff": [],
+ "behavior_conservation": {
+  "scripts": "pipeline/search 等与 v2.4.0 逐字节一致（本版仅新增 gold/ 目录，不改任何脚本）"
+ },
+ "new_capability_evidence": "gold_report.json verdict=pass，13/13 强断言通过（files=11/annotations=17/docx_comments=2/锚点率1.0/簇3/双栏校正≥1/status=partial）",
+ "budget": {
+  "gold_run_seconds": 8,
+  "model_calls_added": 0
+ },
+ "verdict": "pass"
+}

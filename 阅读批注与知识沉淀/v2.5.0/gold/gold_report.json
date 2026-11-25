@@ -1,0 +1,99 @@
+{
+ "steps": [
+  {
+   "step": "make_fixture",
+   "returncode": 0,
+   "stdout": "{\"status\": \"ok\", \"materials\": \"/tmp/forge_repo/阅读批注与知识沉淀/v2.5.0/gold/_run/materials\", \"files\": 11}"
+  },
+  {
+   "step": "pipeline",
+   "returncode": 0,
+   "stdout_tail": "\"status\": \"partial\", \"case_id\": \"GOLD-SELFTEST-001\", \"summary\": {\"files\": 11, \"pdfs_processed\": 4, \"pdfs_failed\": 2, \"annotations\": 17, \"docx_comments\": 2, \"notes\": 24, \"note_links\": 18, \"file_version_links\": 2, \"duplicate_groups\": 1, \"version_groups\": 1}, \"verification_rate\": 1.0, \"elapsed_s\": 1.0}"
+  }
+ ],
+ "assertions": [
+  {
+   "name": "summary.files",
+   "want": 11,
+   "actual": 11,
+   "ok": true
+  },
+  {
+   "name": "summary.pdfs_processed",
+   "want": 4,
+   "actual": 4,
+   "ok": true
+  },
+  {
+   "name": "summary.pdfs_failed",
+   "want": 2,
+   "actual": 2,
+   "ok": true
+  },
+  {
+   "name": "summary.annotations",
+   "want": 17,
+   "actual": 17,
+   "ok": true
+  },
+  {
+   "name": "summary.docx_comments",
+   "want": 2,
+   "actual": 2,
+   "ok": true
+  },
+  {
+   "name": "summary.duplicate_groups",
+   "want": 1,
+   "actual": 1,
+   "ok": true
+  },
+  {
+   "name": "summary.version_groups",
+   "want": 1,
+   "actual": 1,
+   "ok": true
+  },
+  {
+   "name": "summary.file_version_links",
+   "want": 2,
+   "actual": 2,
+   "ok": true
+  },
+  {
+   "name": "verification.anchor_verification_rate",
+   "want": 1.0,
+   "actual": 1.0,
+   "ok": true
+  },
+  {
+   "name": "verification.merged_annotation_clusters",
+   "want": 3,
+   "actual": 3,
+   "ok": true
+  },
+  {
+   "name": "verification.anchor_corrections_min",
+   "want": 1,
+   "actual": 1,
+   "ok": true
+  },
+  {
+   "name": "notes.docx_comment_anchor_verified_count",
+   "want": 2,
+   "actual": 2,
+   "ok": true
+  },
+  {
+   "name": "status",
+   "want": "partial",
+   "actual": "partial",
+   "ok": true
+  }
+ ],
+ "verdict": "pass",
+ "weak": {
+  "fts5": true,
+  "twocol_anchor_match": "exact-column-corrected"
+ }
+}

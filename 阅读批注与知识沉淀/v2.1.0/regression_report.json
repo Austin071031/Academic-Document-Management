@@ -1,0 +1,22 @@
+{
+ "baseline": "v2.0.0 (attempt 99585 evaluation_error / 107992 queued)",
+ "candidate": "v2.1.0",
+ "assets_missing": [],
+ "rules": {
+  "baseline": 2,
+  "candidate": 2,
+  "removed": []
+ },
+ "contract_diff": [],
+ "behavior_conservation": {
+  "non_docx_notes": "v2.0.0 与 v2.1.0 的非 docx 笔记 sha256 一致（同夹具）",
+  "summary_parity": "files/annotations/links/duplicates/version_groups 全部一致",
+  "delta": "docx_comments=2 新增，notes 21→23（仅增量）"
+ },
+ "new_capability_evidence": "reviewed_manuscript.docx 提取 2 条 Word 批注，anchor_verified=true（段落2/3+字符偏移+引文），类别自动判定 question/doubt",
+ "budget": {
+  "pipeline_seconds": 1.2,
+  "model_calls_added": 0
+ },
+ "verdict": "pass"
+}

@@ -1,0 +1,21 @@
+{
+ "baseline": "v2.1.0",
+ "candidate": "v2.2.0",
+ "assets_missing": [],
+ "rules": {
+  "baseline": 2,
+  "candidate": 2,
+  "removed": []
+ },
+ "contract_diff": [],
+ "behavior_conservation": {
+  "notes_links": "与 v2.1.0 逐字节一致",
+  "delta": "仅新增 comparison_report.md/comparison.json 交付物"
+ },
+ "new_capability_evidence": "对照报告 8 项指标全部机检：基线 7 项为 0/不可用，Skill 全部为正（类型6/颜色10/定位20/锚点率1.0/关联15/簇3/索引True）",
+ "budget": {
+  "pipeline_seconds": 1.4,
+  "model_calls_added": 0
+ },
+ "verdict": "pass"
+}

@@ -1,0 +1,16 @@
+{
+ "direction": "anchor-correction-columns-ocr",
+ "baseline_version": "v2.2.0",
+ "baseline_attempt": 107992,
+ "change_summary": "新增 scan_anchor.py 锚点校正：双栏分栏重排二次校验(实测 match none/0.3→exact-column-corrected/0.9)+扫描页 tesseract TSV OCR 锚点恢复(不可用则如实降级)；校正记录进 verification.anchor_corrections；命中创新增益'扫描件批注锚点校正'与题面'双栏串行读取'痛点",
+ "frontmatter_max_bytes": 1024,
+ "target_description_bytes": 900,
+ "resource_limits": {
+  "max_files": 50,
+  "max_file_bytes": 512000,
+  "max_total_bytes": 2097152,
+  "no_symlinks": true
+ },
+ "resubmit_policy": "若 evaluation_error 复现且 preflight 通过，判定为瞬时故障，同内容重提；不改版本号",
+ "params_consumed_by": "scripts/check_skill_install.py"
+}
