@@ -5,8 +5,8 @@
 | **Playground Attempt ID** | **88966**（另有同内容提交 88935、88961，见下） |
 | 挑战赛 | challenge-c050aaed（阅读批注与知识沉淀，玻尔产品周赛第四期） |
 | 提交时间 | 2026-11-19T03:19:18+00:00（88935：03:03:08；88961：03:13 前后） |
-| 状态 | pending_review（评测执行失败：evaluation_error，非终评） |
-| 得分 | 待出分（出分后回填本文件与根 README 索引表） |
+| 状态 | evaluation_error |
+| 得分 | evaluation_error |
 | 查询命令 | `playground status --attempt-id 88966` |
 
 ## 版本与提交的对应关系
@@ -17,6 +17,8 @@
 映射规则：同一挑战赛下按提交时间顺序对应版本号顺序。
 
 ## 执行状态说明
+
+查分时间：北京时间 2026-11-25 09:07。账号 `austin0710@163.com`。三次均为 `harbor_status: evaluation_error`，`scoreIsFinal: false`，`countsTowardQuota: false`，`zeroReason: null`。状态格和得分格记为 evaluation_error。接口里的 `score: 0` 不是终分。
 
 三次提交平台返回的原始状态字段（如实记录，不作结论性判断）：
 
