@@ -1,0 +1,95 @@
+{
+  "version": "2.4.0",
+  "max_tags_default": 6,
+  "vocab": {
+    "machine-learning": [
+      "machine learning",
+      "ml-based",
+      "机器学习"
+    ],
+    "deep-learning": [
+      "deep learning",
+      "neural network",
+      "深度学习",
+      "神经网络"
+    ],
+    "density-functional-theory": [
+      "density functional",
+      "dft",
+      "密度泛函"
+    ],
+    "molecular-dynamics": [
+      "molecular dynamics",
+      "md simulation",
+      "分子动力学"
+    ],
+    "first-principles": [
+      "first-principles",
+      "ab initio",
+      "第一性原理"
+    ],
+    "phase-transition": [
+      "phase transition",
+      "相变"
+    ],
+    "superconductivity": [
+      "superconduct",
+      "超导"
+    ],
+    "catalysis": [
+      "cataly",
+      "催化"
+    ],
+    "battery": [
+      "battery",
+      "lithium-ion",
+      "li-ion",
+      "电池"
+    ],
+    "perovskite": [
+      "perovskite",
+      "钙钛矿"
+    ],
+    "photocatalysis": [
+      "photocataly",
+      "光催化"
+    ],
+    "screening": [
+      "high-throughput screening",
+      "高通量筛选"
+    ],
+    "crystal-structure": [
+      "crystal structure",
+      "晶体结构"
+    ],
+    "band-structure": [
+      "band structure",
+      "能带"
+    ],
+    "quantum": [
+      "quantum",
+      "量子"
+    ],
+    "interface": [
+      "interface",
+      "界面"
+    ],
+    "defect": [
+      "defect",
+      "缺陷"
+    ],
+    "optimization": [
+      "optimization",
+      "优化"
+    ],
+    "bayesian": [
+      "bayesian",
+      "贝叶斯"
+    ],
+    "dataset": [
+      "dataset",
+      "数据库",
+      "data set"
+    ]
+  }
+}

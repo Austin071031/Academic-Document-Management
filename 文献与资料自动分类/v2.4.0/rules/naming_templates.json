@@ -1,0 +1,31 @@
+{
+  "version": "2.4.0",
+  "default_template": "{first_author}-{year}-{title_slug}",
+  "placeholders": [
+    "{first_author}",
+    "{year}",
+    "{title_slug}",
+    "{doi}",
+    "{venue_slug}"
+  ],
+  "fallback_chain": [
+    {
+      "missing": "first_author",
+      "substitute": "unknown_author"
+    },
+    {
+      "missing": "year",
+      "substitute": "ndate"
+    },
+    {
+      "missing": "title",
+      "substitute": "untitled"
+    },
+    {
+      "missing": "all",
+      "substitute": "原文件名净化 + __<sha256前8位>"
+    }
+  ],
+  "collision": "同名不同内容 → __<sha256前8位>，再冲突 _2/_3；同名同内容 → already_applied",
+  "normalization": "NFKC；保留 CJK/字母/数字/-_；非法字符→下划线；超长截词边界（默认60）"
+}

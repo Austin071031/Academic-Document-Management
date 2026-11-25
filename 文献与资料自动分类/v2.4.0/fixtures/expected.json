@@ -1,0 +1,12 @@
+{
+  "description": "金标准期望：selftest.py 合成 7 文件输入，验证去重/版本/分类/异常/自查全链路。",
+  "min_checks": 7,
+  "expected_actions": {
+    "copy of smith.pdf": "archive_duplicate",
+    "2304.12345.pdf": "archive_version",
+    "smith-2023.pdf": "place",
+    "broken.pdf": "skip",
+    "data.csv": "place",
+    "notes.txt": "place"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": "2.4.0",
+  "doc_types": [
+    "journal_article",
+    "preprint",
+    "conference_paper",
+    "thesis",
+    "supplement",
+    "dataset",
+    "scanned_document",
+    "other_document"
+  ],
+  "rules": [
+    {
+      "id": "T0",
+      "type": "other_document",
+      "condition": "扩展名为 bib/ris/enw（纯元数据侧车）"
+    },
+    {
+      "id": "T1",
+      "type": "dataset",
+      "condition": "魔数 zip/gzip/rar 或扩展名 csv/xlsx/xls/json/cif/xyz"
+    },
+    {
+      "id": "T2",
+      "type": "supplement",
+      "condition": "文件名含 suppl/supporting/_si/appendix/补充"
+    },
+    {
+      "id": "T3",
+      "type": "supplement",
+      "condition": "文件名提示命中补充材料/附录"
+    },
+    {
+      "id": "T4",
+      "type": "scanned_document",
+      "condition": "PDF 前两页文本字符数为 0 且未加密、无侧车"
+    },
+    {
+      "id": "T5",
+      "type": "thesis",
+      "condition": "文本或文件名含 thesis/dissertation/学位"
+    },
+    {
+      "id": "T6",
+      "type": "preprint",
+      "condition": "有 arXiv 号且无期刊+DOI 组合元数据"
+    },
+    {
+      "id": "T7",
+      "type": "preprint",
+      "condition": "文本含 preprint/arxiv/biorxiv/预印本"
+    },
+    {
+      "id": "T8",
+      "type": "conference_paper",
+      "condition": "期刊名含 proc./conference/symposium/workshop 或侧车为 inproceedings"
+    },
+    {
+      "id": "T9",
+      "type": "journal_article",
+      "condition": "有 DOI 或期刊名或侧车为 article"
+    },
+    {
+      "id": "T10",
+      "type": "journal_article",
+      "condition": "兜底：PDF 有文本层（低置信）"
+    },
+    {
+      "id": "T11",
+      "type": "other_document",
+      "condition": "无文献特征"
+    }
+  ],
+  "version_grouping": {
+    "keys": [
+      "doi（规范化）",
+      "规范化标题+第一作者姓",
+      "管理别名键"
+    ],
+    "method": "并查集合并",
+    "canonical_scoring": "DOI+4/期刊+2/年份+1/标题+1/文本层+1"
+  },
+  "dedup": {
+    "hash": "sha256",
+    "keep_rule": "文件名干净度（惩罚 (数字)/download/副本/copy/空格/长度）"
+  }
+}
