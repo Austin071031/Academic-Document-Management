@@ -15,6 +15,8 @@
 每个版本一次 playground 提交，Attempt ID、得分在本文件回填，形成"版本—提交—得分"可追溯链。
 映射规则：同一挑战赛下按提交时间顺序对应版本号顺序。
 
+**同内容重提**：2026-11-25T08:32:38+00:00 以相同 Skill 内容重提一次，**Attempt ID 107992**（查询命令 `playground status --attempt-id 107992`）；重提原因：99585 返回 Harbor infrastructure failure，按路线卡纪律以同内容吸收瞬时故障分量。107992 出分/异常后将回填本节状态。
+
 本版 = v1.0.0 的契约层修复版（基线 v1.0.0 / attempt 88966 / evaluation_error 弃权）。
 唯一行为变更：SKILL.md frontmatter description 1046B → 470B；运行时行为与 v1.0.0 一致
 （回归证据见 regression_report.json）。
