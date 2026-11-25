@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "research-library-cas-lineage-v2 result.json",
+  "type": "object",
+  "required": ["case_id", "status", "sources", "evidence", "uncertainty", "change_records"],
+  "properties": {
+    "case_id": {"type": "string", "description": "来自 /input/case.json"},
+    "status": {
+      "type": "string",
+      "enum": ["complete", "complete_with_warnings", "partial", "error"],
+      "description": "诚实状态：有警告不得报 complete"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "origin", "readable"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "description": "sha256 前 16 位"},
+          "origin": {"type": "string", "description": "direct 或 archive:<包路径>"},
+          "readable": {"type": "boolean"}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "关键证据指针（重复组/supersedes 边/检索命中），完整数据在 library/"
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "无法映射的契约字段、跳过文件+原因、坏包、步骤异常"
+    },
+    "change_records": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "本次运行全部动作流水"
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "objects": {"type": "string"},
+        "objects_ledger": {"type": "string"},
+        "index": {"type": "string"},
+        "tree": {"type": "string"},
+        "versions": {"type": "string"},
+        "versions_dot": {"type": "string"},
+        "search_results": {"type": "string"}
+      }
+    }
+  },
+  "additionalProperties": true,
+  "comment": "output_contract 声明的全部字段作为顶层附加属性出现；无法映射的字段为 null 且 uncertainty 中有对应说明。"
+}

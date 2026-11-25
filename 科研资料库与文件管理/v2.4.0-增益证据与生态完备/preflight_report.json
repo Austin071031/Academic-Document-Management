@@ -1,0 +1,158 @@
+{
+  "generated_at": "2026-11-25T09:03:55+00:00",
+  "root": "/bohr-workspace/user-files/玻尔竞赛-第四期/科研资料库与文件管理/v2.4.0-增益证据与生态完备",
+  "overall": "pass",
+  "file_count": 28,
+  "total_bytes": 148387,
+  "checks": [
+    {
+      "file": "SKILL.md",
+      "status": "pass",
+      "detail": "name='research-library-rule-engine-v2-4' description=237 bytes (<= 900)"
+    },
+    {
+      "check": "file_count",
+      "status": "pass",
+      "detail": "28 files (<= 50)"
+    },
+    {
+      "check": "file_size",
+      "status": "pass",
+      "detail": "all files <= 500KB"
+    },
+    {
+      "check": "total_size",
+      "status": "pass",
+      "detail": "148387 bytes (<= 2097152)"
+    },
+    {
+      "check": "utf8_text",
+      "status": "pass",
+      "detail": "all files UTF-8 text"
+    },
+    {
+      "check": "no_symlinks",
+      "status": "pass",
+      "detail": "no symlinks"
+    },
+    {
+      "check": "no_secrets",
+      "status": "pass",
+      "detail": "no token/secret patterns"
+    }
+  ],
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 4267
+    },
+    {
+      "path": "GITHUB_URL.txt",
+      "bytes": 137
+    },
+    {
+      "path": "README.md",
+      "bytes": 10835
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 6670
+    },
+    {
+      "path": "SUBMISSION.md",
+      "bytes": 1772
+    },
+    {
+      "path": "_bundle/report.md",
+      "bytes": 660
+    },
+    {
+      "path": "_bundle/trace.jsonl",
+      "bytes": 2338
+    },
+    {
+      "path": "config/layout_template.json",
+      "bytes": 4224
+    },
+    {
+      "path": "docs/REUSE.md",
+      "bytes": 4177
+    },
+    {
+      "path": "docs/USAGE.md",
+      "bytes": 5626
+    },
+    {
+      "path": "examples/minimal_example.md",
+      "bytes": 1635
+    },
+    {
+      "path": "preflight_report.json",
+      "bytes": 3017
+    },
+    {
+      "path": "references/edge_cases.md",
+      "bytes": 2274
+    },
+    {
+      "path": "references/output_contract.md",
+      "bytes": 2081
+    },
+    {
+      "path": "references/reproduce.md",
+      "bytes": 3024
+    },
+    {
+      "path": "references/rule_authoring.md",
+      "bytes": 3686
+    },
+    {
+      "path": "schemas/plan.schema.json",
+      "bytes": 2962
+    },
+    {
+      "path": "schemas/result.schema.json",
+      "bytes": 2345
+    },
+    {
+      "path": "scripts/apply.py",
+      "bytes": 4966
+    },
+    {
+      "path": "scripts/audit.py",
+      "bytes": 2765
+    },
+    {
+      "path": "scripts/finalize.py",
+      "bytes": 7233
+    },
+    {
+      "path": "scripts/gain_report.py",
+      "bytes": 15796
+    },
+    {
+      "path": "scripts/organize.py",
+      "bytes": 9957
+    },
+    {
+      "path": "scripts/plan.py",
+      "bytes": 14287
+    },
+    {
+      "path": "scripts/preflight_check.py",
+      "bytes": 6456
+    },
+    {
+      "path": "scripts/qa.py",
+      "bytes": 6605
+    },
+    {
+      "path": "scripts/recover.py",
+      "bytes": 9321
+    },
+    {
+      "path": "scripts/rule_engine.py",
+      "bytes": 9271
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "root": "/run/csi/mount-root/oss/57ba86a755ddc257a8513ba861643acd/user-files/玻尔竞赛-第四期/科研资料库与文件管理/v2.2.0-元数据正确性强化",
+  "limits": {
+    "desc_max_bytes": 900,
+    "max_files": 50,
+    "max_file_bytes": 512000,
+    "max_total_bytes": 2097152
+  },
+  "stats": {
+    "files": 27,
+    "total_bytes": 154889
+  },
+  "checks": [
+    {
+      "gate": "frontmatter",
+      "ok": true,
+      "detail": "name='research-library-metadata-provenance-v2-2', description=383B (上限 900B)"
+    },
+    {
+      "gate": "file_count",
+      "ok": true,
+      "detail": "27 个文件（上限 50）"
+    },
+    {
+      "gate": "single_file_size",
+      "ok": true,
+      "detail": "全部 ≤ 512000B"
+    },
+    {
+      "gate": "total_size",
+      "ok": true,
+      "detail": "154889B（上限 2097152B）"
+    },
+    {
+      "gate": "utf8_only",
+      "ok": true,
+      "detail": "全部可 UTF-8 解码"
+    },
+    {
+      "gate": "no_symlinks",
+      "ok": true,
+      "detail": "无"
+    },
+    {
+      "gate": "no_secrets",
+      "ok": true,
+      "detail": "未发现 token/密钥模式"
+    }
+  ],
+  "ok": true
+}

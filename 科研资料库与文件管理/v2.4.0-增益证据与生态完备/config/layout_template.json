@@ -1,0 +1,100 @@
+{
+  "rules_version": "3.0.0",
+  "description": "科研资料库目录组织默认模板：{project}/{year}/{type}/{name}。路由规则按优先级自上而下第一条匹配生效；命名规范化统一在 rule_engine 中执行。",
+  "template": "{project}/{year}/{type}/{name}",
+  "fields": {
+    "project": {
+      "description": "课题/项目名，优先取自伴随表格或管理备注；其次文件名模式。",
+      "source_priority": ["sidecar_csv", "notes_md", "filename_pattern"],
+      "pattern": "^[\\w\\u4e00-\\u9fff][\\w\\u4e00-\\u9fff .-]{0,60}$",
+      "fallback": "unknown-project"
+    },
+    "year": {
+      "description": "四位年份，取自元数据或文件名中的 (19|20)\\d{2}。",
+      "pattern": "^(19|20)\\d{2}$",
+      "fallback": "undated"
+    },
+    "type": {
+      "description": "资料类型，取自元数据 type 字段；缺省按扩展名推断（见 ext_type_map）。",
+      "values": ["paper", "data", "code", "figure", "doc", "archive", "note", "other"],
+      "fallback": "other"
+    },
+    "name": {
+      "description": "规范化后的文件名（NFKC + 非法字符替换 + 空白折叠 + 长度截断）。",
+      "pattern": ".{1,240}"
+    }
+  },
+  "ext_type_map": {
+    "pdf": "paper",
+    "doc": "doc", "docx": "doc", "txt": "doc", "md": "doc", "tex": "doc", "rtf": "doc",
+    "csv": "data", "tsv": "data", "xls": "data", "xlsx": "data", "json": "data", "dat": "data",
+    "py": "code", "ipynb": "code", "m": "code", "r": "code", "c": "code", "cpp": "code", "h": "code", "sh": "code", "jl": "code",
+    "png": "figure", "jpg": "figure", "jpeg": "figure", "tif": "figure", "tiff": "figure", "svg": "figure", "gif": "figure", "eps": "figure",
+    "zip": "archive", "tar": "archive", "gz": "archive", "tgz": "archive", "rar": "archive", "7z": "archive",
+    "bib": "paper", "ris": "paper"
+  },
+  "filename_patterns": [
+    "^(?P<project>[\\u4e00-\\u9fffA-Za-z0-9_.-]+?)[-_](?P<year>(19|20)\\d{2})",
+    "^(?P<year>(19|20)\\d{2})[-_](?P<project>[\\u4e00-\\u9fffA-Za-z0-9_.-]+?)[-_ ]"
+  ],
+  "naming": {
+    "max_component_chars": 80,
+    "max_total_chars": 240,
+    "dup_suffix": "__dup{n}",
+    "reserved_windows_names": ["CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9"]
+  },
+  "route_rules": [
+    {
+      "id": "R01",
+      "priority": 100,
+      "reason": "压缩包统一进 archive 区，不展开内容但登记清单",
+      "when": {"ext_in": ["zip", "tar", "gz", "tgz", "rar", "7z"]},
+      "target_template": "{project}/{year}/archive/{name}"
+    },
+    {
+      "id": "R02",
+      "priority": 90,
+      "reason": "有 project 元数据的论文/文档进入对应课题",
+      "when": {"ext_in": ["pdf", "doc", "docx", "tex", "bib", "ris"], "metadata_has": ["project"]},
+      "target_template": "{project}/{year}/paper/{name}"
+    },
+    {
+      "id": "R03",
+      "priority": 80,
+      "reason": "代码与 notebook 归 code 区",
+      "when": {"ext_in": ["py", "ipynb", "m", "r", "c", "cpp", "h", "sh", "jl"]},
+      "target_template": "{project}/{year}/code/{name}"
+    },
+    {
+      "id": "R04",
+      "priority": 70,
+      "reason": "数据表归 data 区",
+      "when": {"ext_in": ["csv", "tsv", "xls", "xlsx", "dat", "json"]},
+      "target_template": "{project}/{year}/data/{name}"
+    },
+    {
+      "id": "R05",
+      "priority": 60,
+      "reason": "图片归 figure 区",
+      "when": {"ext_in": ["png", "jpg", "jpeg", "tif", "tiff", "svg", "gif", "eps"]},
+      "target_template": "{project}/{year}/figure/{name}"
+    },
+    {
+      "id": "R06",
+      "priority": 50,
+      "reason": "纯文本/Markdown 笔记归 note 区",
+      "when": {"ext_in": ["txt", "md", "rtf"]},
+      "target_template": "{project}/{year}/note/{name}"
+    }
+  ],
+  "default_rule": {
+    "id": "DEFAULT",
+    "reason": "默认兜底：未命中任何路由规则，按默认模板归位到 other",
+    "target_template": "{project}/{year}/other/{name}"
+  },
+  "quarantine": {
+    "enabled": true,
+    "dir": "quarantine",
+    "note": "空目录与无法处理的条目移入 quarantine 或在其中登记，绝不静默丢弃。"
+  }
+}

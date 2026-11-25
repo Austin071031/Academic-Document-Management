@@ -1,0 +1,46 @@
+{
+  "root": "/run/csi/mount-root/oss/57ba86a755ddc257a8513ba861643acd/user-files/玻尔竞赛-第四期/科研资料库与文件管理/v2.3.0-检索问答与索引恢复",
+  "checked_utc": "2026-11-25T09:02:30Z",
+  "limits": {
+    "max_files": 50,
+    "max_file_bytes": 512000,
+    "max_total_bytes": 2097152,
+    "max_description_bytes": 900
+  },
+  "checks": {
+    "file_count": {
+      "value": 27,
+      "limit": 50,
+      "pass": true
+    },
+    "total_bytes": {
+      "value": 139395,
+      "limit": 2097152,
+      "pass": true
+    },
+    "oversize_files": {
+      "count": 0,
+      "items": [],
+      "pass": true
+    },
+    "all_utf8": {
+      "pass": true,
+      "non_utf8_files": []
+    },
+    "no_symlinks": {
+      "pass": true,
+      "symlinks": []
+    },
+    "frontmatter": {
+      "frontmatter_present": true,
+      "name_present": true,
+      "description_present": true,
+      "description_bytes": 235,
+      "description_within_900B": true,
+      "name": "research-library-archive-handoff-v2-3",
+      "pass": true
+    }
+  },
+  "violations": [],
+  "pass": true
+}

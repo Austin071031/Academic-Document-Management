@@ -1,0 +1,7 @@
+{"type": "session_start", "timestamp": "2026-11-19T07:30:00Z", "source": "SciMaster authoring session", "model": "SciMaster"}
+{"role": "user", "content": "这是玻尔产品周赛第四期。请围绕 challenge-2bfd9194「科研资料库与文件管理」开发一个可被 Agent 调用的参赛 Skill，平台会将 Skill 安装到 /skills/weekly-skill 后在 3 个固定案例上真实运行，依据实际输出评分。"}
+{"role": "assistant", "content": "读取题面：curl https://play.bohrium.com/api/challenges/challenge-2bfd9194。评分维度：实际效果40/使用增益25/创新增益15/可靠体验10/生态贡献10+GitHub附加5；运行约定：/app/submission/SKILL.md、/input/case.json+task.md、产物在 /app/output 含 result.json（output_contract 全字段+case_id+status/sources/uncertainty/change_records）、预算 64 次模型请求/900 秒、Skill 资源 ≤50 个文本文件/总 ≤2MB。新案例画像：文档库修复，含真实文件、改名别名、管理性版本备注、伴随元数据表、检索问题、恢复/索引操作。"}
+{"role": "assistant", "content": "设计本方向架构：内容寻址对象库+版本谱系 DAG。五条方向（入库完整性/目录组织/元数据维护/版本管理/长期归档）中选定本方向作为核心方法，其余能力由流水线内建（流式 sha256、按内容判重与版本链、字段出处、六要素覆盖、partial-first 诚实交付）。"}
+{"role": "assistant", "content": "实现：纯 Python 标准库脚本（无第三方依赖），中文与特殊字符文件名 UTF-8 安全，单文件失败捕获记账继续，无权限/空目录显式登记不计为完成，zip/tar 用 stdlib 展开登记，冲突重命名绝不覆盖。"}
+{"role": "assistant", "content": "自测：在 /tmp 自建合成案例（中文名、内容相同改名副本、两版本 txt、管理备注 CSV、坏 zip、空目录、五层深目录）实跑主入口，确认零报错、去重/版本链/检索/校验结果正确，修复发现的 bug 后复验。README 附自查方法。"}
+{"role": "assistant", "content": "交付：SKILL.md（frontmatter+五步执行协议+异常对照表+边界）、README、scripts、references、schemas、examples、CHANGELOG、GITHUB_URL.txt（公开仓库可匿名访问）。打包 ARM bundle 并提交 playground。"}

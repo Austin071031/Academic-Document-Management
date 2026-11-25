@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "provenance.jsonl 逐行 schema（版本4 元数据溯源台账）",
+  "type": "object",
+  "required": ["file", "field", "value", "source", "evidence", "confidence", "conflicts", "rule", "adjudicated_at"],
+  "properties": {
+    "file": {"type": "string", "description": "相对 /input 的路径；压缩包内成员形如 '<包路径>::<成员名>'；库级默认为 '*'"},
+    "field": {"type": "string", "description": "字段字典登记的字段名"},
+    "value": {"type": ["string", "number", "null"], "description": "裁决后的取值"},
+    "source": {"type": "string", "enum": ["admin_note", "companion_table", "content", "filename", "agent_inference"]},
+    "evidence": {"type": "string", "description": "可定位依据：文件/行/列/正则/编码"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["value", "source"],
+        "properties": {
+          "value": {"type": ["string", "number", "null"]},
+          "source": {"type": "string"},
+          "evidence": {"type": ["string", "null"]},
+          "confidence": {"type": ["number", "null"]}
+        }
+      },
+      "description": "落选且取值不同的候选，证据不丢弃"
+    },
+    "rule": {"type": "string", "description": "裁决规则串，内嵌每行使产物自证"},
+    "adjudicated_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": true
+}
